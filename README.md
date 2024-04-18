@@ -52,7 +52,7 @@ python -m pip install pygame
 - Code menu `option `: có 3 mức basic, hard, normal (code giống dị ấn choose -> chuyển đến gameplay)
     ![alt text](image.png)
 - Nhạc khi chơi game (general music & lose game)
-- Sau khi làm xong Dung sẽ export ra application 
+- Sau khi làm xong Dung sẽ export ra application `auto-py-to-exe`
 
 ## Material
 - [Python/Pygame Minesweeper Tutorial](https://www.youtube.com/watch?v=ABGtsAlXw7c) : Đây là hướng dẫn Dung tham khảo 

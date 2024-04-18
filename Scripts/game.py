@@ -8,6 +8,7 @@ from time import sleep
 class Game:
     def __init__(self, size, prob):
         self.board = Board(size, prob)
+        print(prob)
         pygame.init()
         self.sizeScreen = 800, 800
         self.screen = pygame.display.set_mode(self.sizeScreen)
@@ -28,14 +29,18 @@ class Game:
             self.images[fileName.split(".")[0]] = img
             
     def run(self):
+        # print(self.prob)
         running = True
+        k = 0
         while running:
             for event in pygame.event.get():
+                
                 if event.type == pygame.QUIT:
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN and not (self.board.getWon() or self.board.getLost()):
                     rightClick = pygame.mouse.get_pressed(num_buttons=3)[2]
-                    self.handleClick(pygame.mouse.get_pos(), rightClick)
+                    self.handleClick(pygame.mouse.get_pos(), rightClick,k)
+                    if (k == 0): k = 1
                 
                 if event.type == pygame.KEYDOWN:
                     self.solver.move()
@@ -45,10 +50,10 @@ class Game:
             if self.board.getWon():
                 self.win()
                 running = False
-            if self.board.getLost(): # more
-                running = False
-                print('Clicked:')
-                sleep(3)
+            # if self.board.getLost(): # more
+            #     running = False
+            #     print('Clicked:')
+            #     sleep(3)
         pygame.quit()
         
     def draw(self):
@@ -70,8 +75,12 @@ class Game:
             return 'wrong-flag' if piece.getFlagged() else 'empty-block'
         return 'flag' if piece.getFlagged() else 'empty-block'
 
-    def handleClick(self, position, flag):
+    def handleClick(self, position, flag, k):
         index = tuple(int(pos // size) for pos, size in zip(position, self.pieceSize))[::-1] 
+        if (k == 0) : 
+            # print(index, position)
+            # print(self.board, index )
+            self.board.update_board(self.board, index)
         self.board.handleClick(self.board.getPiece(index), flag)
 
     def win(self):

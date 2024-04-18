@@ -40,4 +40,3 @@ class Piece:
         
     def getNeighbors(self):
         return self.neighbors
- 

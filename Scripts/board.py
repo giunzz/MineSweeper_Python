@@ -1,20 +1,37 @@
 import random
 from Scripts.piece import Piece
+# from game import Game
 class Board:
+    # def_vitural = 0
     def __init__(self, size, prob):
         self.size = size
         self.board = []
         self.won = False 
         self.lost = False
+        self.prob = prob
         for row in range(size[0]):
             row = []
             for col in range(size[1]):
-                bomb = random.random() < prob
+                bomb = 0  
                 piece = Piece(bomb)
                 row.append(piece)
             self.board.append(row)
-        self.setNeighbors()
-        self.setNumAround()
+        # self.setNeighbors()
+        # self.setNumAround()
+    def update_board(self, board, index):
+        print("on update_board")
+        
+        sz = len(self.board)
+        for i in range(sz):
+            for j in range(sz):
+                if (i == index[0] and j == index[1]):
+                    continue
+                else :
+                    bomb = random.random() < self.prob
+                    piece = Piece(bomb)
+                    self.board[i][j] = piece
+            self.setNeighbors()
+            self.setNumAround()
 
     def print(self):
         for row in self.board:
