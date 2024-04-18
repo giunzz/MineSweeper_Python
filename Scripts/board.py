@@ -20,7 +20,7 @@ class Board:
         # self.setNumAround()
     def update_board(self, board, index):
         print("on update_board")
-        
+        cnt = 0
         sz = len(self.board)
         for i in range(sz):
             for j in range(sz):

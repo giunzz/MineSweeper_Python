@@ -1,20 +1,22 @@
-import pygame
+import pygame, sys
 from Scripts.piece import Piece 
 from Scripts.board import Board 
+from Scripts.bnt import Button
 import os
 from Scripts.solver import Solver
 from time import sleep
 
 class Game:
+    
     def __init__(self, size, prob):
         self.board = Board(size, prob)
-        print(prob)
         pygame.init()
         self.sizeScreen = 800, 800
         self.screen = pygame.display.set_mode(self.sizeScreen)
         self.pieceSize = (self.sizeScreen[0] / size[1], self.sizeScreen[1] / size[0]) 
         self.loadPictures()
         self.solver = Solver(self.board)
+        
 
     def loadPictures(self):
         self.images = {}
@@ -27,7 +29,9 @@ class Game:
             img = img.convert()
             img = pygame.transform.scale(img, (int(self.pieceSize[0]), int(self.pieceSize[1])))
             self.images[fileName.split(".")[0]] = img
-            
+    
+        
+        
     def run(self):
         # print(self.prob)
         running = True
@@ -51,6 +55,9 @@ class Game:
                 self.win()
                 running = False
             # if self.board.getLost(): # more
+            #     QUIT_BUTTON = Button(image=pygame.image.load("images/Quit Rect.png"), pos=(460, 550), 
+            #                 text_input="QUIT", font=get_font(35), base_color="#d7fcd4", hovering_color="White")
+
             #     running = False
             #     print('Clicked:')
             #     sleep(3)
