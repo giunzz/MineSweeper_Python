@@ -4,7 +4,13 @@ from Scripts.board import Board
 from Scripts.bnt import Button
 import os
 from Scripts.solver import Solver
+from Scripts import States
 from time import sleep
+
+
+def get_font(size): # Returns Press-Start-2P in the desired size
+        return pygame.font.Font("images/font.ttf", size)
+
 
 class Game:
     
@@ -52,15 +58,13 @@ class Game:
             self.draw()
             pygame.display.flip()
             if self.board.getWon():
+                sleep(0.2)
                 self.win()
                 running = False
-            # if self.board.getLost(): # more
-            #     QUIT_BUTTON = Button(image=pygame.image.load("images/Quit Rect.png"), pos=(460, 550), 
-            #                 text_input="QUIT", font=get_font(35), base_color="#d7fcd4", hovering_color="White")
-
-            #     running = False
-            #     print('Clicked:')
-            #     sleep(3)
+            if self.board.getLost():
+                sleep(0.2)
+                self.lose()
+                running = False
         pygame.quit()
         
     def draw(self):
@@ -89,10 +93,79 @@ class Game:
             # print(self.board, index )
             self.board.update_board(self.board, index)
         self.board.handleClick(self.board.getPiece(index), flag)
-
+    
+    
     def win(self):
+        SCREEN = pygame.display.set_mode((950, 700))
+        BG = pygame.image.load("images/Background.png")
+        pygame.display.set_caption("WIN")
         sound = pygame.mixer.Sound('music/win.wav')
-        sound.play()
-        sleep(3)
+        sound.play()   
+        while True:
+            SCREEN.blit(BG, (3, 5))
 
+            MENU_MOUSE_POS = pygame.mouse.get_pos()
+            
+            MENU_TEXT = get_font(50).render("WIN", True, "#b68f40")
+            MENU_RECT = MENU_TEXT.get_rect(center=(500, 100))
+
+            HOME_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 250), 
+                                text_input="HOME", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
+            QUIT_BUTTON = Button(image=pygame.image.load("images/Options Rect.png"), pos=(460, 400), 
+                                text_input="QUIT", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
+            SCREEN.blit(MENU_TEXT, MENU_RECT)
+
+            for button in [HOME_BUTTON,QUIT_BUTTON]:
+                button.changeColor(MENU_MOUSE_POS)
+                button.update(SCREEN)
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if HOME_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        States.main_menu()
+                    if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        pygame.quit()
+                        sys.exit()
+
+            pygame.display.update()
+
+    def lose(self):
+        SCREEN = pygame.display.set_mode((950, 700))
+        BG = pygame.image.load("images/Background.png")
+        pygame.display.set_caption("LOSE")
+        sound = pygame.mixer.Sound('music/win.wav')
+        sound.play()   
+        while True:
+            SCREEN.blit(BG, (3, 5))
+
+            MENU_MOUSE_POS = pygame.mouse.get_pos()
+            
+            MENU_TEXT = get_font(50).render("LOSE", True, "#b68f40")
+            MENU_RECT = MENU_TEXT.get_rect(center=(500, 100))
+
+            HOME_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 250), 
+                                text_input="HOME", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
+            QUIT_BUTTON = Button(image=pygame.image.load("images/Options Rect.png"), pos=(460, 400), 
+                                text_input="QUIT", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
+            SCREEN.blit(MENU_TEXT, MENU_RECT)
+
+            for button in [HOME_BUTTON,QUIT_BUTTON]:
+                button.changeColor(MENU_MOUSE_POS)
+                button.update(SCREEN)
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if HOME_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        States.main_menu()
+                    if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        pygame.quit()
+                        sys.exit()
+
+            pygame.display.update()
     

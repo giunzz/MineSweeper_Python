@@ -9,12 +9,12 @@ flow game : main menu -> select `play`-> select `option` -> play game -> after w
 
 ## Stuctures for gameplay
 <pre>
-├── main.py
+├── main.py # Chạy code 
 └── Scripts
-    ├── board.py
-    ├── game.py
-    ├── piece.py
-    └── Solver.py
+    ├── board.py # Tạo ma trận
+    ├── game.py  # game manager minesweeper
+    ├── piece.py # Đánh xung quanh chỗ có bom, (tạo phần tử cho mảng)
+    └── Solver.py # Move , flag (cờ)
 └── music
 └── images
 </pre>
@@ -54,6 +54,16 @@ python -m pip install pygame
 - Nhạc khi chơi game (general music & lose game)
 - Sau khi làm xong Dung sẽ export ra application `auto-py-to-exe`
 
+=> Done 
+
+### 3. UI (Need to fix)
+
+### 4.EXport 
+
+```
+    pyinstaller main.py --onefile --windowed
+```
+
 ## Material
 - [Python/Pygame Minesweeper Tutorial](https://www.youtube.com/watch?v=ABGtsAlXw7c) : Đây là hướng dẫn Dung tham khảo 
 - [Thuật toán MineSweeper(lưu ý thuật toán xem mỗi link này được rồi nhiều nó loãng)](https://www.youtube.com/watch?v=Fjw7Lc9zlyU)
@@ -62,3 +72,4 @@ python -m pip install pygame
 - [5 Tips To Organize Python Code](https://www.youtube.com/watch?v=e9yMYdnSlUA&t=184s)
 - [HOW TO MAKE A MENU SCREEN IN PYGAME!](https://www.youtube.com/watch?v=GMBqjxcKogA&t=81s)
 
+- [Converting Python Project (Multiple Files) to Executable (.exe) Format](https://www.youtube.com/watch?v=wp2pNVUl3lc&t=234s)

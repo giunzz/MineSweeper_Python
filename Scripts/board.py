@@ -16,10 +16,7 @@ class Board:
                 piece = Piece(bomb)
                 row.append(piece)
             self.board.append(row)
-        # self.setNeighbors()
-        # self.setNumAround()
     def update_board(self, board, index):
-        print("on update_board")
         cnt = 0
         sz = len(self.board)
         for i in range(sz):
@@ -27,7 +24,10 @@ class Board:
                 if (i == index[0] and j == index[1]):
                     continue
                 else :
-                    bomb = random.random() < self.prob
+                    if cnt == 0: 
+                        bomb = 1
+                        cnt = 1
+                    else: bomb = random.random() < self.prob
                     piece = Piece(bomb)
                     self.board[i][j] = piece
             self.setNeighbors()
