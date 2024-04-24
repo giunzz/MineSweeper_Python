@@ -40,7 +40,7 @@ class Board:
         return self.size
     
     def getPiece(self, index):
-        print(self.board[index[0]][index[1]]) # dính bom là true get index khi user click
+        # print(self.board[index[0]][index[1]]) # dính bom là true get index khi user click
         return self.board[index[0]][index[1]]
 
     def handleClick(self, piece, flag):
