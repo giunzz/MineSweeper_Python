@@ -107,11 +107,11 @@ class Game:
             MENU_MOUSE_POS = pygame.mouse.get_pos()
             
             MENU_TEXT = get_font(50).render("WIN", True, "#b68f40")
-            MENU_RECT = MENU_TEXT.get_rect(center=(500, 100))
+            MENU_RECT = MENU_TEXT.get_rect(center=(460, 100))
 
             HOME_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 250), 
                                 text_input="HOME", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
-            QUIT_BUTTON = Button(image=pygame.image.load("images/Options Rect.png"), pos=(460, 400), 
+            QUIT_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 400), 
                                 text_input="QUIT", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
             SCREEN.blit(MENU_TEXT, MENU_RECT)
 
@@ -137,18 +137,30 @@ class Game:
         BG = pygame.image.load("images/Background.png")
         pygame.display.set_caption("LOSE")
         sound = pygame.mixer.Sound('music/win.wav')
-        sound.play()   
+        sound.play()  
+
+         # Load hình ảnh từ tệp tin
+        image1= pygame.image.load("images/a1.png")
+
+        # Lấy kích thước của hình ảnh
+        image_rect1 = image1.get_rect()
+
+        
+
+
+
         while True:
             SCREEN.blit(BG, (3, 5))
+            SCREEN.blit(image1, (300, 500))
 
             MENU_MOUSE_POS = pygame.mouse.get_pos()
             
             MENU_TEXT = get_font(50).render("LOSE", True, "#b68f40")
-            MENU_RECT = MENU_TEXT.get_rect(center=(500, 100))
+            MENU_RECT = MENU_TEXT.get_rect(center=(460, 100))
 
             HOME_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 250), 
                                 text_input="HOME", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
-            QUIT_BUTTON = Button(image=pygame.image.load("images/Options Rect.png"), pos=(460, 400), 
+            QUIT_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 400), 
                                 text_input="QUIT", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
             SCREEN.blit(MENU_TEXT, MENU_RECT)
 

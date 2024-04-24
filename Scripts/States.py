@@ -2,6 +2,7 @@ import sys
 from Scripts.game import Game
 import pygame
 from Scripts.bnt import Button
+from time import sleep
 
 
 pygame.init()
@@ -13,6 +14,9 @@ BG = pygame.image.load("images/Background.png")
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("images/font.ttf", size)
+sound_path = "music/trochoi.mp3"  # Đường dẫn đến tệp tin âm thanh
+pygame.mixer.music.load(sound_path)
+pygame.mixer.music.play(-1)  # Phát âm thanh lặp lại vô hạn
 
 
 
@@ -57,23 +61,22 @@ def guide():
         text = "Minesweeper is also known by another name called Mine Detection or Bomb Removal. Coming to Minesweeper"\
         "the player's task is to open all the squares without clicking on the squares containing mines, and if you click on a square containing a mine, you will lose immediately"\
         ". You can right-click to place a flag."
-        
-        font = pygame.font.SysFont('Arial', 25)
+        font = pygame.font.SysFont('Arial', 30)
 
         GUIDE_MOUSE_POS = pygame.mouse.get_pos()
         
-        TEXT_BUTTON = Button(image=pygame.image.load("images/Quit Rect.png"), pos=(500, 280),text_input="0", font=get_font(1), base_color="#d7fcd4", hovering_color="White")
+        TEXT_BUTTON = Button(image=pygame.image.load("images/Options Rect.png"), pos=(470, 320),text_input="0", font=get_font(1), base_color="#d7fcd4", hovering_color="White")
         
-        RETURN_BUTTON = Button(image=pygame.image.load("images/Options Rect.png"), pos=(400, 400), 
-                                text_input="RETURN", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("images/Quit Rect.png"), pos=(400, 550), 
-                                text_input="QUIT", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
+        RETURN_BUTTON = Button(image=pygame.image.load("images/Quit Rect.png"), pos=(830, 650),# 400, 400
+                                text_input="RETURN", font=get_font(30), base_color="#d7fcd4", hovering_color="White")
+        QUIT_BUTTON = Button(image=pygame.image.load("images/Quit Rect.png"), pos=(100, 650), 
+                                text_input="QUIT", font=get_font(30), base_color="#d7fcd4", hovering_color="White")
         
         
         for button in [RETURN_BUTTON, QUIT_BUTTON, TEXT_BUTTON]:
             button.changeColor(GUIDE_MOUSE_POS)
             button.update(SCREEN)
-            blit_text(SCREEN, text, (100, 200), font, pygame.Color('white'))
+            blit_text(SCREEN, text, (50, 250), font, pygame.Color('white'))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -88,18 +91,18 @@ def guide():
 
 def main_menu():
     while True:
-        SCREEN.blit(BG, (3, 5))
+        SCREEN.blit(BG, (0, 0))
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         MENU_TEXT = get_font(50).render("MINESWEEPER", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(500, 100))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 250), 
+        PLAY_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(490, 250), 
                             text_input="START", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
-        GUIDE_BUTTON = Button(image=pygame.image.load("images/Options Rect.png"), pos=(460, 400), 
+        GUIDE_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(490, 400), 
                             text_input="GUIDE", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("images/Quit Rect.png"), pos=(400, 550), 
+        QUIT_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(490, 550), 
                             text_input="QUIT", font=get_font(35), base_color="#d7fcd4", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
@@ -123,6 +126,25 @@ def main_menu():
 
         pygame.display.update()
 
+def main_menu1():
+    # Khởi tạo pygame
+    pygame.init()
+# Thiết lập màn hình và cài đặt cửa sổ
+    SCREEN_WIDTH = 950
+    SCREEN_HEIGHT = 700
+    SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("MineSweeper")
+    background_image_path = "images/anh.png"  # Đường dẫn đến hình ảnh nền
+    background_image = pygame.image.load(background_image_path)
+    background_rect = background_image.get_rect()
+    running = True
+    while running:
+    # Xử lý sự kiện
+        SCREEN.blit(background_image, background_rect)
+        pygame.display.flip()
+        sleep(2)
+        main_menu()
+
 
 def Options():
     while True:
@@ -133,11 +155,11 @@ def Options():
         OPTION_TEXT = get_font(50).render("OPTIONS", True, "#b68f40")
         OPTION_RECT = OPTION_TEXT.get_rect(center=(500, 100))
 
-        OP1 = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 250), 
+        OP1 = Button(image=pygame.image.load("images/Play Rect.png"), pos=(490, 250), 
                             text_input="EASY", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
-        OP2 = Button(image=pygame.image.load("images/Options Rect.png"), pos=(460, 400), 
+        OP2 = Button(image=pygame.image.load("images/Play Rect.png"), pos=(490, 400), 
                             text_input="MEDIUM", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
-        OP3 = Button(image=pygame.image.load("images/Quit Rect.png"), pos=(400, 550), 
+        OP3 = Button(image=pygame.image.load("images/Play Rect.png"), pos=(490, 550), 
                             text_input="HARD", font=get_font(35), base_color="#d7fcd4", hovering_color="White")
 
         SCREEN.blit(OPTION_TEXT, OPTION_RECT)
