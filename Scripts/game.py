@@ -36,8 +36,6 @@ class Game:
             img = pygame.transform.scale(img, (int(self.pieceSize[0]), int(self.pieceSize[1])))
             self.images[fileName.split(".")[0]] = img
     
-        
-        
     def run(self):
         # print(self.prob)
         running = True
@@ -58,11 +56,11 @@ class Game:
             self.draw()
             pygame.display.flip()
             if self.board.getWon():
-                sleep(0.2)
+                sleep(3)
                 self.win()
                 running = False
             if self.board.getLost():
-                sleep(0.2)
+                sleep(3)
                 self.lose()
                 running = False
         pygame.quit()
@@ -139,7 +137,7 @@ class Game:
         sound = pygame.mixer.Sound('music/win.wav')
         sound.play()  
 
-         # Load hình ảnh từ tệp tin
+        # Load hình ảnh từ tệp tin
         image1= pygame.image.load("images/a1.png")
 
         # Lấy kích thước của hình ảnh
