@@ -23,10 +23,10 @@ pygame.init()
 SCREEN = pygame.display.set_mode((950, 700))
 pygame.display.set_caption("Menu")
 
-logo = pygame.image.load(resource_path('images/logo.png'))
+logo = pygame.image.load(resource_path('images\logo.png'))
 pygame.display.set_icon(logo) 
 
-BG = pygame.image.load(resource_path("images/Background.png"))
+BG = pygame.image.load(resource_path("images\Background.png"))
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font((resource_path("images/font.ttf")) , size)
@@ -74,8 +74,8 @@ def guide():
         MAIN_TEXT = get_font(50).render("MINESWEEPER", True, "#b68f40")
         MAIN_RECT = MAIN_TEXT.get_rect(center=(500, 100))
         SCREEN.blit(MAIN_TEXT,MAIN_RECT)
-        text = "Minesweeper is also known by another name called Mine Detection or Bomb Removal. Coming to Minesweeper"/
-        "the player's task is to open all the squares without clicking on the squares containing mines, and if you click on a square containing a mine, you will lose immediately"/
+        text = "Minesweeper is also known by another name called Mine Detection or Bomb Removal. Coming to Minesweeper"\
+        "the player's task is to open all the squares without clicking on the squares containing mines, and if you click on a square containing a mine, you will lose immediately"\
         ". You can right-click to place a flag."
         font = pygame.font.SysFont('Arial', 30)
 
