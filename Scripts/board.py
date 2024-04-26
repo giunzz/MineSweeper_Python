@@ -24,9 +24,9 @@ class Board:
                 if (i == index[0] and j == index[1]): # bỏ qua vị trí user click lần đầu
                     continue
                 else :
-                    if cnt == 0: 
+                    if cnt <= 1: 
                         bomb = 1 # bảng luôn có ít nhất 1 bom
-                        cnt = 1
+                        cnt += 1
                     else: bomb = random.random() < self.prob #xác xuất 50% so với các bảng
                     piece = Piece(bomb)
                     self.board[i][j] = piece

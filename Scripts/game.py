@@ -6,10 +6,21 @@ import os
 from Scripts.solver import Solver
 from Scripts import States
 from time import sleep
+import  sys
 
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS2
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 def get_font(size): # Returns Press-Start-2P in the desired size
-        return pygame.font.Font("images/font.ttf", size)
+        return pygame.font.Font(resource_path("images/font.ttf"), size)
 
 
 class Game:
@@ -26,7 +37,7 @@ class Game:
 
     def loadPictures(self):
         self.images = {}
-        imagesDirectory = "images"
+        imagesDirectory = resource_path("images")
         for fileName in os.listdir(imagesDirectory):
             if not fileName.endswith(".png"):
                 continue
@@ -56,11 +67,11 @@ class Game:
             self.draw()
             pygame.display.flip()
             if self.board.getWon():
-                sleep(3)
+                sleep(2)
                 self.win()
                 running = False
             if self.board.getLost():
-                sleep(3)
+                sleep(2)
                 self.lose()
                 running = False
         pygame.quit()
@@ -86,16 +97,13 @@ class Game:
 
     def handleClick(self, position, flag, k):
         index = tuple(int(pos // size) for pos, size in zip(position, self.pieceSize))[::-1] 
-        if (k == 0) : 
-            # print(index, position)
-            # print(self.board, index )
-            self.board.update_board(self.board, index)
-        self.board.handleClick(self.board.getPiece(index), flag)
+        if (k == 0) : self.board.update_board(self.board, index)
+        else: self.board.handleClick(self.board.getPiece(index), flag)
     
     
     def win(self):
         SCREEN = pygame.display.set_mode((950, 700))
-        BG = pygame.image.load("images/Background.png")
+        BG = pygame.image.load(resource_path("images/Background.png"))
         pygame.display.set_caption("WIN")
         sound = pygame.mixer.Sound('music/win.wav')
         sound.play()   
@@ -107,9 +115,9 @@ class Game:
             MENU_TEXT = get_font(50).render("WIN", True, "#b68f40")
             MENU_RECT = MENU_TEXT.get_rect(center=(460, 100))
 
-            HOME_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 250), 
+            HOME_BUTTON = Button(image=pygame.image.load(resource_path("images/Play Rect.png")), pos=(460, 250), 
                                 text_input="HOME", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
-            QUIT_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 400), 
+            QUIT_BUTTON = Button(image=pygame.image.load(resource_path("images/Play Rect.png")), pos=(460, 400), 
                                 text_input="QUIT", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
             SCREEN.blit(MENU_TEXT, MENU_RECT)
 
@@ -132,13 +140,13 @@ class Game:
 
     def lose(self):
         SCREEN = pygame.display.set_mode((950, 700))
-        BG = pygame.image.load("images/Background.png")
+        BG = pygame.image.load(resource_path("images/Background.png"))
         pygame.display.set_caption("LOSE")
         sound = pygame.mixer.Sound('music/win.wav')
         sound.play()  
 
         # Load hình ảnh từ tệp tin
-        image1= pygame.image.load("images/a1.png")
+        image1= pygame.image.load(resource_path("images/a1.png"))
 
         # Lấy kích thước của hình ảnh
         image_rect1 = image1.get_rect()
@@ -156,9 +164,9 @@ class Game:
             MENU_TEXT = get_font(50).render("LOSE", True, "#b68f40")
             MENU_RECT = MENU_TEXT.get_rect(center=(460, 100))
 
-            HOME_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 250), 
+            HOME_BUTTON = Button(image=pygame.image.load(resource_path("images/Play Rect.png")), pos=(460, 250), 
                                 text_input="HOME", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
-            QUIT_BUTTON = Button(image=pygame.image.load("images/Play Rect.png"), pos=(460, 400), 
+            QUIT_BUTTON = Button(image=pygame.image.load(resource_path("images/Play Rect.png")), pos=(460, 400), 
                                 text_input="QUIT", font=get_font(45), base_color="#d7fcd4", hovering_color="White")
             SCREEN.blit(MENU_TEXT, MENU_RECT)
 

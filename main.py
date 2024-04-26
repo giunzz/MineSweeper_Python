@@ -1,5 +1,6 @@
 from Scripts import States
 
+
 States.main_menu1()
 """
 "Minesweeper is also known by another name called Mine Detection or Bomb Removal. Coming to Minesweeper"\
