@@ -1,5 +1,4 @@
 import pygame, sys
-from Scripts.piece import Piece 
 from Scripts.board import Board 
 from Scripts.bnt import Button
 import os

@@ -4,17 +4,16 @@
 ## Overview 
 ![alt text](/report_imp/image.png)
 
-flow game : main menu -> select `play`-> select `option` -> play game -> after win/lose select (`Again` / `Quit`)
-    + 'Again'` -> mainmenu
-
 ## Stuctures for gameplay
 <pre>
-├── main.py # Chạy code 
+├── main.py # file chính build game
 └── Scripts
-    ├── board.py # Tạo ma trận
-    ├── game.py  # game manager minesweeper
-    ├── piece.py # Đánh xung quanh chỗ có bom, (tạo phần tử cho mảng)
-    └── Solver.py # Move , flag (cờ)
+    ├── board.py # tạo bảng mìn
+    ├── game.py  # quản lý gameplay
+    ├── piece.py # xử lý thao tác từng phần tử của bảng
+    └── Solver.py # chuyển động di chuyển chuột của user
+    └── States.py # state win , lose, option , menu
+    └── bnt.py # UI for create a button 
 └── music
 └── images
 </pre>
@@ -22,45 +21,31 @@ flow game : main menu -> select `play`-> select `option` -> play game -> after w
 ## Requirements
 ```bash
 python -m pip install pygame
+python -m pip install requirements.txt
 ```
-`blabla thieeus j install do nhen`
+## run code
+``
+python -m main.py
+```
 
 ## Boards
 
 | scheme       | rows   | cols   | mines   |      |
 | ------------ | ------ | ------ | ------- |------|
-| Basic        | 10     | 10     | 10      |Choose
-| Normal | 15   | 10    | 20      |Choose|
-| Hard      | 20     | 10     | 20      | Choose
+| Basic        | 4    | 4     | <= 50% * 16    |Choose
+| Normal | 9   | 9   | 20      |<= 50% * 81|
+| Hard      | 19    | 19    | <= 50 % (19*19)     | Choose
 
 
 ## Features
-### 1. Use
 
-- Game check chính xác các ô có mìn 
-- Gắn được cờ khi ấn chuột phải 
-- Ô đang set mặc định (12x12) với 10% bom
 - Cấu trúc tổ chức file : run file `main.py` để hiển thị màn hình 
     - File `board.py` : khởi tạo bảnng chơi, check game win
     - File `game.py` : code UI (picture, music, stage etc)
     - file `piece.py`: các thông số thay đổi khi chơi game
     - file `solver.py`: di chuyển chuột
 
-### 2. Need to code
-- Multiple Screens on PyGame -> code `main menu` có 3 option
-    - Play , Tutorial -> Quit 
-- Code menu `option `: có 3 mức basic, hard, normal (code giống dị ấn choose -> chuyển đến gameplay)
-    ![alt text](image.png)
-- Nhạc khi chơi game (general music & lose game)
-- Sau khi làm xong Dung sẽ export ra application `auto-py-to-exe`
 
-=> Done 
-
-### 4.EXport 
-
-```
-    pyinstaller main.py --onefile --windowed
-```
 
 ## Material
 - [Python/Pygame Minesweeper Tutorial](https://www.youtube.com/watch?v=ABGtsAlXw7c) 
