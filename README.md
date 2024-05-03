@@ -24,7 +24,7 @@ python -m pip install pygame
 python -m pip install requirements.txt
 ```
 ## run code
-``
+```
 python -m main.py
 ```
 
