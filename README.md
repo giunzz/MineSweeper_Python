@@ -50,7 +50,6 @@ python -m main.py
 ## Material
 - [Python/Pygame Minesweeper Tutorial](https://www.youtube.com/watch?v=ABGtsAlXw7c) 
 - [Pygame Tutorial for Beginners](https://www.youtube.com/watch?v=FfWpgLFMI7w)
-- Tìm hiểu self : [What is the purpose of the `self` parameter? Why is it needed?](https://stackoverflow.com/questions/2709821/what-is-the-purpose-of-the-self-parameter-why-is-it-needed)
 - [5 Tips To Organize Python Code](https://www.youtube.com/watch?v=e9yMYdnSlUA&t=184s)
 - [HOW TO MAKE A MENU SCREEN IN PYGAME!](https://www.youtube.com/watch?v=GMBqjxcKogA&t=81s)
 
